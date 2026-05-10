@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium skincare products at MAY SKINCARE HUB.">
+    <title>MAY SKINCARE HUB | Premium Skincare Products</title>
+    
+    <!-- Favicon -->
+   <link rel="icon" type="image/jpeg" href="Misc/logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --surface-color: #15151c;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent-color: #d4af37; /* Premium Gold */
+            --accent-hover: #f1c40f;
+            --glass-bg: rgba(21, 21, 28, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.04), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.04), transparent 30%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a35;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .navbar-brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar-brand span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            background: linear-gradient(45deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-item:hover {
+            color: #fff;
+            border-color: var(--accent-color);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .contact-item i.fa-whatsapp {
+            color: #25D366;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: fadeInDown 1s ease;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            font-weight: 300;
+        }
+
+        /* Products Section */
+        .products-container {
+            padding: 2rem 5% 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Product Card */
+        .card {
+            background: var(--surface-color);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            overflow: hidden;
+            background: #000;
+        }
+
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 12, 0.8) 100%);
+            pointer-events: none;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+            background: var(--surface-color);
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .btn-whatsapp {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: #25D366;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-whatsapp::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebc59;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-whatsapp:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: #050507;
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: auto;
+        }
+
+        .footer-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-contact {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-contact span {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .footer-contact i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .dev-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .dev-link:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            .hero {
+                padding: 11rem 5% 4rem;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+                width: 100%;
+            }
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        /* Cart Logic Styles */
+        .btn-select.selected {
+            background: var(--surface-color);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            box-shadow: none;
+        }
+        
+        .btn-select.selected:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .btn-select.selected::before {
+            display: none;
+        }
+
+        /* Product Price */
+        .product-price {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Floating Cart */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .floating-cart:hover {
+            transform: translateY(-5px);
+            background: #1ebc59;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .cart-badge {
+            background: white;
+            color: #25D366;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--surface-color);
+            border-left: 1px solid var(--glass-border);
+            z-index: 1002;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-color);
+        }
+
+        .cart-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .close-cart {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cart-item-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cart-item-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            max-width: 70%;
+        }
+
+        .cart-item-price {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+        }
+
+        .qty-display {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            margin-left: auto;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: #ff6b81;
+            transform: scale(1.1);
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            background: var(--bg-color);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .checkout-btn:hover {
+            background: #1ebc59;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-cart {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            .cart-sidebar {
+                max-width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <img src="Misc/Logo.jpeg" alt="MAY SKINCARE HUB Logo">
+            <span>MAY SKINCARE HUB</span>
+        </a>
+        <div class="contact-info">
+            <a href="mailto:mayskincarehub@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i> mayskincarehub@gmail.com
+            </a>
+            <a href="https://wa.me/254716314057" class="contact-item" target="_blank">
+                <i class="fab fa-whatsapp"></i> 0716 314 057
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Radiate Confidence</h1>
+        <p>Discover our premium selection of skincare products tailored to bring out your natural, glowing beauty.</p>
+    </header>
+
+    <!-- Products Section -->
+    <main class="products-container">
+        <h2 class="section-title">Our Collection</h2>
+        <div class="products-grid" id="products-grid">
+            <!-- Cards will be injected by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <img src="Misc/Logo.jpeg" alt="MAY SKINCARE HUB" class="footer-logo">
+        <h2 class="footer-title">MAY SKINCARE HUB</h2>
+        <p class="footer-text">Elevating your skincare routine with premium, carefully curated products.</p>
+        
+        <div class="footer-contact">
+            <span><i class="fas fa-envelope"></i> mayskincarehub@gmail.com</span>
+            <span><i class="fab fa-whatsapp"></i> 0716 314 057</span>
+        </div>
+
+        <div class="social-links">
+            <a href="https://wa.me/254716314057" class="social-link" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="mailto:mayskincarehub@gmail.com" class="social-link" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; <span id="year"></span> MAY SKINCARE HUB. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Website crafted by <a href="https://k1manii.github.io/Services-/" target="_blank" class="dev-link">Kimanii Web Solutions</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <button class="floating-cart" id="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i> Cart <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
+    <!-- Cart Sidebar & Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">KSH 0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const productsGrid = document.getElementById('products-grid');
+            const companyName = "MAY SKINCARE HUB";
+            const phoneNumber = "254716314057";
+
+            // EDIT YOUR PRODUCTS HERE:
+            // Change the 'name' and 'price' for each product to match what you are selling.
+            // You can also change the 'image' if you rename the files in your Images folder.
+            // To add a new product, just add a new line like the others!
+            const myProducts = [
+                { id: 'prod_1', image: '1.jpeg', name: 'Body scrubs', price: 450 },
+                { id: 'prod_2', image: '2.jpeg', name: 'Exfoliating shower gels', price: 800 },
+                { id: 'prod_3', image: '3.jpeg', name: 'Dr davey body lotions', price: 800 },
+                { id: 'prod_4', image: '4.jpeg', name: 'Dove lotions', price: 750 },
+                { id: 'prod_5', image: '5.jpeg', name: 'Dove shower gels', price: 650 },
+                { id: 'prod_6', image: '6.jpeg', name: 'Kids perfumes', price: 400 },
+                { id: 'prod_7', image: '7.jpeg', name: 'Body oils', price: 600 },
+                { id: 'prod_8', image: '8.jpeg', name: 'Natural soaps', price: 450 },
+                { id: 'prod_9', image: '9.jpeg', name: 'Tumeric vitamin c face cream', price: 700 },
+                { id: 'prod_10', image: '10.jpeg', name: 'Collagen face cream', price: 850 },
+                { id: 'prod_11', image: '11.jpeg', name: 'Kojic face serum', price: 500 },
+                { id: 'prod_12', image: '12.jpeg', name: 'Face toner', price: 350 },
+                { id: 'prod_13', image: '13.jpeg', name: 'Skin touch face set', price: 350 },
+                { id: 'prod_14', image: '14.jpeg', name: 'Aloe Vera Gel', price: 400 },
+                { id: 'prod_15', image: '15.jpeg', name: 'Kojic soap', price: 300 },
+                { id: 'prod_16', image: '16.jpeg', name: 'Raw Ugandan Shea Butter', price: 700 },
+                { id: 'prod_17', image: '17.jpeg', name: 'Raw Ugandan Shea Butter -large', price: 1000 },
+                { id: 'prod_18', image: '18.jpeg', name: 'Molata body scrub', price: 800 },
+                { id: 'prod_19', image: '19.jpeg', name: 'Sadoer SPF50 Sunscreen', price: 500 },
+                { id: 'prod_20', image: '20.jpeg', name: 'Green coffee', price: 1000 },
+                { id: 'prod_21', image: '21.jpeg', name: 'Raw ugandan shea butter', price: 1000 },
+                { id: 'prod_22', image: '22.jpeg', name: 'Collagen body lotions', price: 400 },
+                { id: 'prod_23', image: '23.jpeg', name: 'Collagen Sakura face serum', price: 500 },
+                { id: 'prod_24', image: '24.jpeg', name: 'Collagen face cream', price: 850 },
+                { id: 'prod_25', image: '25.jpeg', name: 'Collagen sakura face cream', price: 500 },
+                { id: 'prod_26', image: '26.jpeg', name: 'Tumeric+ vitamin c face cream', price: 700 },
+                { id: 'prod_27', image: '27.jpeg', name: 'Sadoer saliclyic acid face cream', price: 500 },
+                { id: 'prod_28', image: '28.jpeg', name: 'Tumeric body scrub ', price: 700 },
+                { id: 'prod_29', image: '29.jpeg', name: 'Sadoer salicylic acid face toner', price: 500 },
+                { id: 'prod_30', image: '30.jpeg', name: 'Vaseline daily brightening lotions', price: 1000 },
+                { id: 'prod_31', image: '31.jpeg', name: 'Vaseline body oils', price: 700 },
+                { id: 'prod_32', image: '32.jpeg', name: 'Double dose molata body cream', price: 700 },
+                { id: 'prod_33', image: '33.jpeg', name: 'Double dose molata shower cream', price: 800 },
+                { id: 'prod_34', image: '34.jpeg', name: 'Double dose molata body oil', price: 800 }
+            ];
+
+            // Cart State
+            let cart = {}; // { productId: { name, price, quantity } }
+            
+            // DOM Elements
+            const floatingCartBtn = document.getElementById('floating-cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const closeCartBtn = document.getElementById('close-cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCountBadge = document.getElementById('cart-count');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Toggle Cart Sidebar
+            const toggleCart = () => {
+                cartSidebar.classList.toggle('open');
+                cartOverlay.classList.toggle('show');
+            };
+
+            floatingCartBtn.addEventListener('click', toggleCart);
+            closeCartBtn.addEventListener('click', toggleCart);
+            cartOverlay.addEventListener('click', toggleCart);
+
+            // Format Currency
+            const formatMoney = (amount) => {
+                return new Intl.NumberFormat('en-KE').format(amount);
+            };
+
+            // Update Cart UI
+            const updateCartUI = () => {
+                let totalItems = 0;
+                let totalPrice = 0;
+                cartItemsContainer.innerHTML = '';
+
+                const cartKeys = Object.keys(cart);
+                
+                if (cartKeys.length === 0) {
+                    cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                    floatingCartBtn.style.display = 'none';
+                    cartSidebar.classList.remove('open');
+                    cartOverlay.classList.remove('show');
+                } else {
+                    floatingCartBtn.style.display = 'flex';
+                    
+                    cartKeys.forEach(id => {
+                        const item = cart[id];
+                        totalItems += item.quantity;
+                        const itemSubtotal = item.price * item.quantity;
+                        totalPrice += itemSubtotal;
+
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'cart-item';
+                        itemEl.innerHTML = `
+                            <div class="cart-item-info">
+                                <h4>${item.name}</h4>
+                                <div class="cart-item-price">KSH ${formatMoney(item.price)}</div>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button class="qty-btn minus" data-id="${id}">-</button>
+                                <span class="qty-display">${item.quantity}</span>
+                                <button class="qty-btn plus" data-id="${id}">+</button>
+                                <button class="remove-btn" data-id="${id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(itemEl);
+                    });
+                }
+
+                cartCountBadge.textContent = totalItems;
+                cartTotalPrice.textContent = `KSH ${formatMoney(totalPrice)}`;
+                
+                // Update product card buttons
+                document.querySelectorAll('.btn-select').forEach(btn => {
+                    const id = btn.getAttribute('data-id');
+                    if (cart[id]) {
+                        btn.innerHTML = `<i class="fas fa-check"></i> In Cart (${cart[id].quantity})`;
+                        btn.classList.add('selected');
+                    } else {
+                        btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
+                        btn.classList.remove('selected');
+                    }
+                });
+            };
+
+            // Cart Actions
+            const addToCart = (id, name, price) => {
+                if (cart[id]) {
+                    cart[id].quantity += 1;
+                } else {
+                    cart[id] = { name, price, quantity: 1 };
+                }
+                updateCartUI();
+            };
+
+            const updateQuantity = (id, change) => {
+                if (cart[id]) {
+                    cart[id].quantity += change;
+                    if (cart[id].quantity <= 0) {
+                        delete cart[id];
+                    }
+                    updateCartUI();
+                }
+            };
+
+            const removeFromCart = (id) => {
+                if (cart[id]) {
+                    delete cart[id];
+                    updateCartUI();
+                }
+            };
+
+            // Event Delegation for Cart Items
+            cartItemsContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+
+                const id = btn.getAttribute('data-id');
+                if (btn.classList.contains('minus')) updateQuantity(id, -1);
+                if (btn.classList.contains('plus')) updateQuantity(id, 1);
+                if (btn.classList.contains('remove-btn')) removeFromCart(id);
+            });
+
+            // Checkout Handler
+            checkoutBtn.addEventListener('click', () => {
+                if (Object.keys(cart).length === 0) return;
+                
+                let orderList = '';
+                let grandTotal = 0;
+
+                Object.values(cart).forEach((item, index) => {
+                    const subtotal = item.price * item.quantity;
+                    grandTotal += subtotal;
+                    orderList += `${index + 1}. ${item.name} x ${item.quantity} - KSH ${formatMoney(subtotal)}%0A`;
+                });
+
+                const message = encodeURIComponent(`Hi ${companyName}, I'd like to place an order:`) + 
+                              orderList + 
+                              encodeURIComponent(`Total: KSH ${formatMoney(grandTotal)} Thank you!`);
+                
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // Generate product cards
+            myProducts.forEach((product, i) => {
+                // Create card element
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.opacity = '0';
+                card.style.animation = `fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards ${(i + 1) * 0.05}s`;
+
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="Images/${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='Misc/Logo.jpeg'">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="product-category">Premium Collection</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">KSH ${formatMoney(product.price)}</div>
+                        <button class="btn-whatsapp btn-select" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(card);
+            });
+
+            // Event delegation for Add to Cart buttons
+            productsGrid.addEventListener('click', (e) => {
+                const btn = e.target.closest('.btn-select');
+                if (!btn) return;
+                
+                const id = btn.getAttribute('data-id');
+                const name = btn.getAttribute('data-name');
+                const price = parseInt(btn.getAttribute('data-price'));
+                
+                addToCart(id, name, price);
+            });
+            
+            // Initial UI state
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
