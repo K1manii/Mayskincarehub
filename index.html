@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium skincare products at MAY SKINCARE HUB. Personalized routines, custom requests, and quality skincare.">
+    <title>MAY SKINCARE HUB | Premium Skincare Products & Personalized Routines</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="Misc/Logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External CSS Modules -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <img src="Misc/Logo.jpeg" alt="MAY SKINCARE HUB Logo">
+            <span>MAY SKINCARE HUB</span>
+        </a>
+        
+        <!-- Desktop Search Bar -->
+        <div class="search-container navbar-search-desktop">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="product-search" placeholder="Search products, skin type, concern..." autocomplete="off">
+                <button id="clear-search" class="clear-search-btn" style="display: none;" title="Clear Search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="navbar-mobile-controls">
+            <button class="mobile-search-toggle" id="mobile-search-toggle" title="Toggle Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="navbar-search-mobile" id="navbar-search-mobile">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="product-search-mobile" placeholder="Search products, skin type, concern..." autocomplete="off">
+                <button id="clear-search-mobile" class="clear-search-btn" style="display: none;" title="Clear Search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="#body-care-section">Body Care</a>
+            <a href="#fragrances-section">Fragrances</a>
+            <a href="#face-care-section">Face Care</a>
+            <a href="#butters-oils-section">Butters & Oils</a>
+            <a href="#sun-care-section">Sun Care</a>
+            <a href="#health-wellness-section">Health & Wellness</a>
+            <a href="#" id="open-wishlist-btn"><i class="far fa-heart"></i> Wishlist (<span class="wishlist-count-badge">0</span>)</a>
+            <a href="#" id="nav-quiz-link" style="color: var(--accent-color); font-weight: 600;"><i class="fas fa-sparkles"></i> Skin Quiz</a>
+            <a href="#" id="nav-request-link" style="color: var(--accent-color); font-weight: 600;"><i class="fas fa-paper-plane"></i> Request Product</a>
+        </div>
+
+        <div class="contact-info" id="contact-info">
+            <a href="mailto:mayskincarehub@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i> mayskincarehub@gmail.com
+            </a>
+            <a href="https://wa.me/254716314057" class="contact-item" target="_blank">
+                <i class="fab fa-whatsapp"></i> 0716 314 057
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Radiate Confidence</h1>
+        <p>Discover our premium selection of skincare products tailored to bring out your natural, glowing beauty.</p>
+
+        <!-- Hero Quiz Banner CTA -->
+        <div class="hero-quiz-card">
+            <h3>✨ NOT SURE WHAT YOUR SKIN NEEDS?</h3>
+            <p>Take our quick skincare quiz to find your personalized routine tailored to your skin type and concerns.</p>
+            <button class="btn-start-quiz" id="start-quiz-btn">
+                <i class="fas fa-sparkles"></i> START SKIN QUIZ
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Products & Experience Container -->
+    <main class="products-container">
+
+        <!-- Personalized Recommendations Section (Shown if Quiz completed) -->
+        <section class="products-section" id="personalized-recommendations-section" style="display: none; margin-bottom: 4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                <h2 class="section-title" style="margin-bottom: 0;">✨ Recommended For You</h2>
+                <button id="add-recommended-routine-btn" class="btn-whatsapp" style="width: auto; font-size: 0.9rem;">
+                    <i class="fas fa-cart-plus"></i> Add Recommended Routine to Cart
+                </button>
+            </div>
+            <div class="products-grid" id="personalized-recommendations-grid"></div>
+        </section>
+
+        <!-- Search Results Section -->
+        <section class="products-section" id="search-results-section" style="display: none; margin-bottom: 3rem;">
+            <h2 class="section-title" id="search-results-title">Search Results</h2>
+            <div class="products-grid" id="search-results-grid"></div>
+            <div id="search-no-results" class="empty-search-message" style="display: none;">
+                <i class="fas fa-search-minus" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                <p>We couldn't find any products matching your search.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <button id="search-reset-btn" class="btn-whatsapp selected" style="width: auto;" onclick="executeSearch('')">
+                        <i class="fas fa-undo"></i> Show All Products
+                    </button>
+                    <button class="btn-whatsapp" style="width: auto; background: var(--accent-color); color: #000;" onclick="openRequestModal()">
+                        <i class="fas fa-paper-plane"></i> Request it here
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Filter & Sort Toolbar -->
+        <div class="filter-sort-bar" id="filter-sort-bar">
+            <div class="filter-group">
+                <select class="filter-select" id="filter-category" title="Filter by Category">
+                    <option value="all">All Categories</option>
+                    <option value="Body Care">Body Care</option>
+                    <option value="Fragrances">Fragrances</option>
+                    <option value="Face Care">Face Care</option>
+                    <option value="Butters & Oils">Butters & Oils</option>
+                    <option value="Sun Care">Sun Care</option>
+                    <option value="Health & Wellness">Health & Wellness</option>
+                </select>
+
+                <select class="filter-select" id="filter-skin-type" title="Filter by Skin Type">
+                    <option value="all">All Skin Types</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Dry">Dry</option>
+                    <option value="Oily">Oily</option>
+                    <option value="Combination">Combination</option>
+                    <option value="Sensitive">Sensitive</option>
+                </select>
+
+                <select class="filter-select" id="filter-skin-concern" title="Filter by Skin Concern">
+                    <option value="all">All Concerns</option>
+                    <option value="Acne">Acne</option>
+                    <option value="Dark Spots">Dark Spots</option>
+                    <option value="Hyperpigmentation">Hyperpigmentation</option>
+                    <option value="Dryness">Dryness</option>
+                    <option value="Dull Skin">Dull Skin</option>
+                    <option value="Uneven Skin Tone">Uneven Skin Tone</option>
+                    <option value="Sun Protection">Sun Protection</option>
+                    <option value="Aging">Aging</option>
+                </select>
+
+                <select class="filter-select" id="filter-product-type" title="Filter by Product Type">
+                    <option value="all">All Product Types</option>
+                    <option value="Serum">Serums</option>
+                    <option value="Cream">Creams</option>
+                    <option value="Lotion">Lotions</option>
+                    <option value="Scrub">Scrubs</option>
+                    <option value="Oil">Oils</option>
+                    <option value="Soap">Soaps</option>
+                    <option value="Shower Gel">Shower Gels</option>
+                    <option value="Sunscreen">Sunscreens</option>
+                    <option value="Fragrance">Fragrances</option>
+                </select>
+
+                <select class="filter-select" id="filter-price" title="Filter by Price">
+                    <option value="all">All Prices</option>
+                    <option value="under-500">Under KSH 500</option>
+                    <option value="500-1000">KSH 500 – 1,000</option>
+                    <option value="1000-2000">KSH 1,000 – 2,000</option>
+                    <option value="above-2000">Above KSH 2,000</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <select class="filter-select" id="sort-by" title="Sort Products">
+                    <option value="featured">Featured</option>
+                    <option value="best-sellers">Best Sellers</option>
+                    <option value="newest">Newest</option>
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                    <option value="highest-rated">Highest Rated</option>
+                    <option value="a-z">A – Z</option>
+                </select>
+
+                <button class="clear-filters-btn" id="clear-filters-btn">
+                    <i class="fas fa-undo"></i> Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="all-products-heading">Our Collection</h2>
+
+        <!-- Best Sellers Section -->
+        <section class="products-section" id="best-sellers-section" style="display: none;">
+            <h2 class="section-title">🔥 BEST SELLERS</h2>
+            <div class="products-grid" id="best-sellers-grid"></div>
+        </section>
+
+        <!-- New Arrivals Section -->
+        <section class="products-section" id="new-arrivals-section" style="display: none;">
+            <h2 class="section-title">🆕 NEW ARRIVALS</h2>
+            <div class="products-grid" id="new-arrivals-grid"></div>
+        </section>
+
+        <!-- Sale Section -->
+        <section class="products-section" id="sale-section" style="display: none;">
+            <h2 class="section-title">🏷️ SALE & OFFERS</h2>
+            <div class="products-grid" id="sale-grid"></div>
+        </section>
+
+        <!-- Body Care Section -->
+        <section class="products-section" id="body-care-section">
+            <h2 class="section-title">Body Care</h2>
+            <div class="products-grid" id="body-care-grid"></div>
+        </section>
+        
+        <!-- Fragrances Section -->
+        <section class="products-section" id="fragrances-section">
+            <h2 class="section-title">Fragrances</h2>
+            <div class="products-grid" id="fragrances-grid"></div>
+        </section>
+        
+        <!-- Face Care Section -->
+        <section class="products-section" id="face-care-section">
+            <h2 class="section-title">Face Care</h2>
+            <div class="products-grid" id="face-care-grid"></div>
+        </section>
+        
+        <!-- Butters & Oils Section -->
+        <section class="products-section" id="butters-oils-section">
+            <h2 class="section-title">Butters & Oils</h2>
+            <div class="products-grid" id="butters-oils-grid"></div>
+        </section>
+        
+        <!-- Sun Care Section -->
+        <section class="products-section" id="sun-care-section">
+            <h2 class="section-title">Sun Care</h2>
+            <div class="products-grid" id="sun-care-grid"></div>
+        </section>
+        
+        <!-- Health & Wellness Section -->
+        <section class="products-section" id="health-wellness-section">
+            <h2 class="section-title">Health & Wellness</h2>
+            <div class="products-grid" id="health-wellness-grid"></div>
+        </section>
+
+        <!-- Phase 2: Shop by Skin Type -->
+        <section class="products-section" id="shop-skin-type-section">
+            <h2 class="section-title">SHOP BY SKIN TYPE</h2>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button class="btn-details skin-type-quick-filter" data-type="Dry"><i class="fas fa-droplet"></i> Dry Skin</button>
+                <button class="btn-details skin-type-quick-filter" data-type="Oily"><i class="fas fa-sun"></i> Oily Skin</button>
+                <button class="btn-details skin-type-quick-filter" data-type="Combination"><i class="fas fa-balance-scale"></i> Combination</button>
+                <button class="btn-details skin-type-quick-filter" data-type="Sensitive"><i class="fas fa-heart"></i> Sensitive</button>
+                <button class="btn-details skin-type-quick-filter" data-type="Normal"><i class="fas fa-check-circle"></i> Normal</button>
+            </div>
+        </section>
+
+        <!-- Phase 2: Shop by Concern -->
+        <section class="products-section" id="shop-skin-concern-section">
+            <h2 class="section-title">SHOP BY CONCERN</h2>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button class="btn-details concern-quick-filter" data-concern="Dark Spots"><i class="fas fa-bullseye"></i> Dark Spots</button>
+                <button class="btn-details concern-quick-filter" data-concern="Dryness"><i class="fas fa-tint-slash"></i> Dryness</button>
+                <button class="btn-details concern-quick-filter" data-concern="Acne"><i class="fas fa-shield-alt"></i> Acne</button>
+                <button class="btn-details concern-quick-filter" data-concern="Dull Skin"><i class="fas fa-sparkles"></i> Dullness</button>
+                <button class="btn-details concern-quick-filter" data-concern="Uneven Skin Tone"><i class="fas fa-adjust"></i> Uneven Tone</button>
+                <button class="btn-details concern-quick-filter" data-concern="Sun Protection"><i class="fas fa-sun"></i> Sun Protection</button>
+                <button class="btn-details concern-quick-filter" data-concern="Aging"><i class="fas fa-hourglass-half"></i> Aging</button>
+            </div>
+        </section>
+
+        <!-- Phase 2: Build Your Routine -->
+        <section class="products-section" id="routine-builder-section">
+            <h2 class="section-title">🧪 BUILD YOUR ROUTINE</h2>
+            <div id="routine-builder-container"></div>
+        </section>
+
+        <!-- Phase 2: Recently Viewed Section -->
+        <section class="products-section" id="recently-viewed-section" style="display: none;">
+            <h2 class="section-title">👁️ RECENTLY VIEWED</h2>
+            <div class="products-grid" id="recently-viewed-grid"></div>
+        </section>
+
+        <!-- Phase 2: Educational Skincare Journal -->
+        <section class="products-section" id="skincare-journal-section">
+            <h2 class="section-title">📖 SKINCARE EDUCATION</h2>
+            <div class="journal-grid">
+                <div class="journal-card">
+                    <h4>How to Build a Simple Skincare Routine</h4>
+                    <p>Start with three basic steps: Cleanse to remove impurities, Moisturize to hydrate and lock in barrier protection, and Protect with SPF during the day.</p>
+                </div>
+                <div class="journal-card">
+                    <h4>Understanding Your Skin Type</h4>
+                    <p>Identify whether your skin feels tight (Dry), shiny (Oily), balanced (Normal), or reactive (Sensitive) to choose compatible formulations.</p>
+                </div>
+                <div class="journal-card">
+                    <h4>Why Daily Sunscreen Protection Matters</h4>
+                    <p>Sunscreen shields your skin against harmful UV rays, helping prevent premature signs of aging, hyperpigmentation, and sun damage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 2: Customer Reviews & Real Results Empty State -->
+        <section class="products-section" id="customer-reviews-section">
+            <h2 class="section-title">🌟 REAL CUSTOMERS. REAL ROUTINES.</h2>
+            <div class="empty-state-card">
+                <i class="fas fa-comments"></i>
+                <p>No customer reviews submitted yet.</p>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-secondary);">Be the first to share your experience with MAY SKINCARE HUB products after your order!</p>
+            </div>
+        </section>
+
+        <!-- Phase 2: FAQ Accordion Section -->
+        <section class="products-section faq-section" id="faq-section">
+            <h2 class="section-title">❓ FREQUENTLY ASKED QUESTIONS</h2>
+            <div class="faq-accordion" id="faq-accordion-container"></div>
+        </section>
+
+        <!-- Preserved Request Banner Section -->
+        <section class="request-banner-section">
+            <div class="request-banner">
+                <div class="request-banner-content">
+                    <h2>Looking for a specific skincare product?</h2>
+                    <p>If there's a product you need that isn't listed in our collection, request it directly! Let us source it and deliver it to you.</p>
+                </div>
+                <button class="btn-whatsapp" id="open-request-btn" style="width: auto; background: var(--accent-color); color: #000; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
+                    <i class="fas fa-paper-plane"></i> Request a Product
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <img src="Misc/Logo.jpeg" alt="MAY SKINCARE HUB" class="footer-logo">
+        <h2 class="footer-title">MAY SKINCARE HUB</h2>
+        <p class="footer-text">Elevating your skincare routine with premium, carefully curated products.</p>
+        
+        <div class="footer-contact">
+            <span><i class="fas fa-envelope"></i> mayskincarehub@gmail.com</span>
+            <span><i class="fab fa-whatsapp"></i> 0716 314 057</span>
+        </div>
+
+        <div class="social-links">
+            <a href="https://wa.me/254716314057" class="social-link" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="mailto:mayskincarehub@gmail.com" class="social-link" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; <span id="year"></span> MAY SKINCARE HUB. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Website crafted by <a href="https://k1manii.github.io/Services-/" target="_blank" class="dev-link">Kimanii Web Solutions</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <button class="floating-cart" id="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i> Cart <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
+    <!-- Cart Sidebar & Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <button class="clear-cart-btn" id="clear-cart-btn" title="Clear all items"><i class="fas fa-trash-alt"></i> Clear All</button>
+                <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">KSH 0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Product Details Modal Overlay -->
+    <div class="modal-overlay" id="details-modal-overlay">
+        <div class="modal-card" id="details-modal-content"></div>
+    </div>
+
+    <!-- Wishlist Modal Overlay -->
+    <div class="modal-overlay" id="wishlist-modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>♡ Your Wishlist</h3>
+                <button class="close-modal" id="close-wishlist-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="wishlist-items-container" class="cart-items" style="max-height: 60vh;"></div>
+        </div>
+    </div>
+
+    <!-- Skincare Quiz Modal Overlay -->
+    <div class="modal-overlay" id="quiz-modal-overlay">
+        <div class="modal-card" id="quiz-modal-content"></div>
+    </div>
+
+    <!-- Request Product Modal (Preserved original ID and functionality) -->
+    <div class="modal-overlay" id="request-modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Request a Product</h3>
+                <button class="close-modal" id="close-request-modal" title="Close Modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="request-product-form">
+                <div class="form-group">
+                    <label for="req-product-name">Product Name *</label>
+                    <input type="text" id="req-product-name" placeholder="Enter product name (e.g. CeraVe Moisturising Cream)" required>
+                </div>
+                <div class="form-group">
+                    <label for="req-product-qty">Quantity Needed *</label>
+                    <div class="quantity-selector-wrapper">
+                        <button type="button" class="qty-btn" id="req-qty-minus">-</button>
+                        <input type="number" id="req-product-qty" value="1" min="1" required readonly>
+                        <button type="button" class="qty-btn" id="req-qty-plus">+</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Product Image (Optional)</label>
+                    <div class="file-upload-wrapper" id="file-upload-zone">
+                        <input type="file" id="req-product-image" accept="image/*" style="display: none;">
+                        <div class="upload-placeholder" id="upload-placeholder">
+                            <i class="fas fa-camera" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-secondary);"></i>
+                            <span>Click to upload photo</span>
+                        </div>
+                        <div class="upload-preview" id="upload-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Product Preview">
+                            <button type="button" class="remove-preview-btn" id="remove-preview-btn" title="Remove Photo"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="req-product-details">Additional Details (Optional)</label>
+                    <textarea id="req-product-details" rows="3" placeholder="Provide size, skin type, or other details if any"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="modal-btn btn-add-cart" id="req-add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button type="button" class="modal-btn btn-whatsapp-direct" id="req-whatsapp-now">
+                        <i class="fab fa-whatsapp"></i> Request on WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modular JS Engines -->
+    <script src="js/config.js"></script>
+    <script src="js/data/products.js"></script>
+    <script src="js/data/bundles.js"></script>
+    <script src="js/data/routines.js"></script>
+    <script src="js/data/faq.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/product-details.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script src="js/routines.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
